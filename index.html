@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quark</title>
+
+    <link rel="shortcut icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div style="height: 5em;"></div>
+    <nav style="height: 5em; position: fixed; top: 0; display: flex; align-items: center;
+    box-sizing: border-box; padding: 0 1em; background: white; width: 100%;">
+        <img src="assets/icon.png" style="height: 4em;"/>
+        <div style="margin-left: auto; padding: 2em; display: flex; gap: 2em;">
+            <a href="https://github.com/quark-programming/quark" target="_blank" style="color: #443a33;">GitHub</a>
+            <a href="docs.html" style="color: #443a33;">Docs</a>
+        </div>
+    </nav>
+
+    <header style="height: 60vh; display: grid; place-items: center;">
+        <div style="display: flex; align-items: center; width: 100%; justify-content: space-around;">
+            <img src="assets/title.png" style="width: 40%" />
+            <div style="display: grid; place-items: center; gap: 1em;">
+                <a href="docs.html"
+                style="font-size: 1.5em; padding: 1em 2em; background: var(--purple); color: white; text-decoration: none; letter-spacing: 0.1em;"
+                ><b>QUICK START</b></a>
+                <a href="https://github.com/quark-programming/quark" target="_blank"
+                style="color: var(--gray);">Version 0.0.1</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="background: var(--gray); color: white; box-sizing: border-box; padding: 6em;
+    display: flex; flex-direction: column; gap: 2em;">
+        <h1 style="font-size: 3em;">About Quark</h1>
+        <div style="display: block; background: white; width: 10em; height: 0.25em;"></div>
+        <p style="font-size: 1.3em; font-family: serif">
+            Quark is a new C-like programming language with more advanced language features.
+            It is designed using C, and compiles to C.
+        </p>
+        <p style="font-size: 1.3em; font-family: serif">
+            It uses to two step compilation process to convert
+            <code style="font-family: monospace">.qk</code> source files into compilable C code.
+        </p>
+
+        <div style="display: grid; gap: 1em; grid-auto-flow: column; place-items: center;">
+            <code style="padding: 1em; background: #0004; color: #ddd; width: calc(50vw - 14em);">
+                <pre>struct Array&lt;T&gt; {</pre>
+                <pre>   T* data;</pre>
+                <pre>   usize size;</pre>
+                <pre>}</pre>
+                <br/>
+                <pre>Array&lt;int&gt; numbers;</pre>
+                <br/>
+                <pre>Array&lt;char&gt; string = Array {</pre>
+                <pre>   data: "Hello World",</pre>
+                <pre>   size: 11,</pre>
+                <pre>};</pre>
+            </code>
+            <p style="display: grid; place-items: center; font-size: 4em; font-family: monospace;">→</p>
+            <code style="padding: 1em; background: #0004; color: #ddd; width: calc(50vw - 14em);">
+                <pre>struct Array__number { int* data; size_t size; };</pre>
+                <pre>struct Array__char { char* data; size_t size; };</pre>
+                <br/>
+                <pre>int main() {</pre>
+                <pre>   struct Array__number numbers;</pre>
+                <pre>   struct Array__char string;</pre>
+                <pre>   (string = (struct Array__char) { .data = "Hello World", .size = 11 });</pre>
+                <pre>}</pre>
+            </code>
+        </div>
+    </main>
+</body>
+</html>
