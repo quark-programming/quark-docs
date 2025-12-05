@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quark Docs</title>
+
+    <link rel="shortcut icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav style="height: 5em; position: fixed; top: 0; display: flex; align-items: center; box-sizing: border-box;
+    padding: 0 1em; width: 100%; background: #fffa;">
+        <a href="index.html" style="display: grid; place-items: center;"><img src="assets/title.png" style="height: 4em;"/></a>
+        <div style="margin-left: auto; padding: 2em; display: flex; gap: 2em;">
+            <a href="https://github.com/quark-programming/quark" target="_blank" style="color: #443a33;">GitHub</a>
+            <a href="docs.html" style="color: #443a33;">Docs</a>
+        </div>
+    </nav> 
+
+    <style>
+        label {
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.2s;
+
+            &:hover {
+                color: white;
+            }
+        }
+
+        h2, h3 {
+            color: white;
+        }
+
+        input[type="radio"] { display: none; }
+        article { display: none; }
+        input[type="radio"]:checked + article { display: flex; }
+
+        .prev-next {
+            width: 100%;
+            display: flex;
+            box-sizing: border-box;
+            padding: 0.25em;
+            gap: 0.25em;
+
+            > label {
+                flex: 1;
+                padding: 1em;
+                background: var(--gray);
+                color: white;
+            }
+        }
+
+        code {
+            background: #0004;
+            color: #222;
+            padding: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            display: block;
+            font-family: monospace;
+        }
+
+        span {
+            font-family: monospace;
+        }
+    </style>
+
+    <main style="display: flex; height: 100vh;">
+        <nav style="width: 15em; background: var(--gray); box-sizing: border-box; padding: 1em; padding-top: 6em;
+        display: flex; flex-direction: column; gap: 0.5em;">
+            <h2 style="margin-bottom: 0.25em;">Quark Docs</h2>
+            <label for="quick-start">Quick Start</label>
+            <label for="hello-world">Hello World</label>
+        </nav>
+
+        <div style="width: calc(100vw - 15em); box-sizing: border-box; padding: 4em; padding-top: 6em; overflow-y: scroll;">
+            <input type="radio" name="page" id="quick-start" checked />
+            <article style="flex-direction: column; gap: 2em;">
+                <h1>Quick Start</h1>
+                
+                <p>All source code needed to build your first project can be found on the GitHub repository: 
+                    <a href="https://github.com/quark-programming/quark" target="_blank">quark-programming/quark</a></p>
+
+                <p>You can download the source code using the <a href="https://github.com/quark-programming/quark/releases"
+                    target="_blank">latest release</a> or by cloning the repo</p>
+
+                <code>$ git clone https://github.com/quark-programming/quark.git</code>
+
+                <p>After downloading the source code, navigate to its folder and build the project using make. You can
+                    specify the output binary name using the <span style="font-family: monospace;">out</span> variable.
+                    By default, it will create a binary named <span style="font-family: monospace;">qc</span>.
+                </p>
+
+                <code>
+                    $ make build <br>
+                    $ make build out=my_compiler
+                </code>
+                
+                <p>
+                    All source code is licensed under the MIT License. See the
+                    <a target="_blank" href="https://github.com/quark-programming/quark/blob/main/LICENSE">LICENSE</a>
+                    file for more information.
+                </p>
+
+                <p>
+                    When writing Quark code, source files should use the <span style="font-family: monospace;">.qk</span>
+                    file extension. You can compile your Quark source files using the compiler like so
+                </p>
+
+                <code>
+                    $ ./qc path/to/source_file.qk -o output_code.c <br>
+                    $ cc output_code.c -o final_executable
+                </code>
+
+                <div class="prev-next">
+                    <label for="hello-world">Next: Hello World</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="hello-world" />
+            <article style="flex-direction: column; gap: 2em;">
+                <h1>Hello World</h1>
+
+                <p>
+                    Let's write out first program in Quark. Start by creating a new filed with the
+                    <span style="font-family: monospace;">.qk</span> extension. Here I'll use
+                    <span style="font-family: monospace;">hello.qk</span>.
+                </p>
+
+                <code>
+                    import lib::io; <br>
+                    <br>
+                    print(str::from("Hello, World!"));
+                </code>
+
+                <p>
+                    We start by importing the standard I/O library so we can use the print function. You can see
+                    all of the source library files in the <span style="font-family: monospace;">
+                    <a href="https://github.com/quark-programming/quark/tree/main/lib" target="_blank">libs/</a></span>
+                    folder. As of 
+                    <a href="https://github.com/quark-programming/quark/releases/tag/Quark-0.0.1" target="_blank">0.0.1</a>,
+                    the <span>lib::io</span> library also imports the
+                    <span>lib::str</span> library, so we can use the
+                    <span>str::from</span> function to convert a string literal into a
+                    string slice.
+                </p>
+
+                <div class="prev-next">
+                    <label for="quick-start">Previous: Quick Start</label>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
