@@ -10,11 +10,11 @@
 </head>
 <body>
     <nav style="height: 5em; position: fixed; top: 0; display: flex; align-items: center; box-sizing: border-box;
-    padding: 0 1em; width: 100%; background: #fffa;">
+    padding: 0 1em; width: 100%; background: white;">
         <a href="index.html" style="display: grid; place-items: center;"><img src="assets/title.png" style="height: 4em;"/></a>
         <div style="margin-left: auto; padding: 2em; display: flex; gap: 2em;">
             <a href="https://github.com/quark-programming/quark" target="_blank" style="color: #443a33;">GitHub</a>
-            <a href="docs.html" style="color: #443a33;">Docs</a>
+            <a href="index.html" style="color: #443a33;">Home</a>
         </div>
     </nav> 
 
@@ -34,7 +34,13 @@
         }
 
         input[type="radio"] { display: none; }
-        article { display: none; }
+
+        article { 
+            display: none; 
+            flex-direction: column;
+            gap: 2em;
+        }
+
         input[type="radio"]:checked + article { display: flex; }
 
         .prev-next {
@@ -42,7 +48,7 @@
             display: flex;
             box-sizing: border-box;
             padding: 0.25em;
-            gap: 0.25em;
+            gap: 1em;
 
             > label {
                 flex: 1;
@@ -65,17 +71,45 @@
         span {
             font-family: monospace;
         }
+    
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        th, td {
+            padding: 0.25em 1em;
+        }
     </style>
 
     <main style="display: flex; height: 100vh;">
         <nav style="width: 15em; background: var(--gray); box-sizing: border-box; padding: 1em; padding-top: 6em;
-        display: flex; flex-direction: column; gap: 0.5em;">
+        display: flex; flex-direction: column; gap: 0.5em; overflow-y: scroll;">
             <h2 style="margin-bottom: 0.25em;">Quark Docs</h2>
             <label for="quick-start">Quick Start</label>
             <label for="hello-world">Hello World</label>
+
+            <h3 style="margin-top: 0.25em">Types</h3>
+            <label for="primitive-types">Primitive Types</label>
+            <label for="pointer-types">Pointer Types</label>
+            <label for="structures">Structures</label>
+            <label for="generics">Generics</label>
+
+            <h3 style="margin-top: 0.25em">Control Flow</h3>
+            <label for="control-statements">Control Statements</label>
+            <label for="functions">Functions</label>
+
+            <h3 style="margin-top: 0.25em">Misc</h3>
+            <label for="imports">Imports</label>
+            <a href="https://github.com/quark-programming/quark/tree/main/lib" style="color: #ccc;"
+            target="_blank">Libraries</a>
         </nav>
 
-        <div style="width: calc(100vw - 15em); box-sizing: border-box; padding: 4em; padding-top: 6em; overflow-y: scroll;">
+        <div style="width: calc(100vw - 15em); box-sizing: border-box; padding: 4em; padding-top: 7em; overflow-y: scroll;">
             <input type="radio" name="page" id="quick-start" checked />
             <article style="flex-direction: column; gap: 2em;">
                 <h1>Quick Start</h1>
@@ -149,9 +183,303 @@
 
                 <div class="prev-next">
                     <label for="quick-start">Previous: Quick Start</label>
+                    <label for="primitive-types">Next: Primitive Types</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="primitive-types">
+            <article>
+                <h1>Primitive Types</h1>
+
+                <p>
+                    Quark has several built-in primitive types for representing data. Here are the default types and their
+                    C equivalents as of 
+                    <a href="https://github.com/quark-programming/quark/releases/tag/Quark-0.0.1" target="_blank">0.0.1</a>:
+                </p>
+
+                <div style="display: flex; gap: 2em;">
+                    <table>
+                        <tr><th>Quark Type</th><th>C Equivalent</th></tr>
+                        <tr><td><span>u8</span></td><td><span>uint8_t</span></td></tr>
+                        <tr><td><span>i8</span></td><td><span>int8_t</span></td></tr>
+                        <tr><td><span>u16</span></td><td><span>uint16_t</span></td></tr>
+                        <tr><td><span>i16</span></td><td><span>int16_t</span></td></tr>
+                        <tr><td><span>u32</span></td><td><span>uint32_t</span></td></tr>
+                        <tr><td><span>i32</span></td><td><span>int32_t</span></td></tr>
+                        <tr><td><span>u64</span></td><td><span>uint64_t</span></td></tr>
+                        <tr><td><span>i64</span></td><td><span>int64_t</span></td></tr>
+                        <tr><td><span>f32</span></td><td><span>float</span></td></tr>
+                        <tr><td><span>f64</span></td><td><span>double</span></td></tr>
+                        <tr><td><span>isize</span></td><td><span>ssize_t</span></td></tr>
+                        <tr><td><span>usize</span></td><td><span>size_t</span></td></tr>
+                    </table>
+                    <table>
+                        <tr><th>Quark Type</th><th>C Equivalent</th></tr>
+                        <tr><td><span>char</span></td><td><span>char</span></td></tr>
+                        <tr><td><span>ichar</span></td><td><span>signed char</span></td></tr>
+                        <tr><td><span>uchar</span></td><td><span>unsigned char</span></td></tr>
+                        <tr><td><span>Short</span></td><td><span>short</span></td></tr>
+                        <tr><td><span>UShort</span></td><td><span>unsigned short</span></td></tr>
+                        <tr><td><span>Int</span></td><td><span>int</span></td></tr>
+                        <tr><td><span>UInt</span></td><td><span>unsigned int</span></td></tr>
+                        <tr><td><span>Long</span></td><td><span>long</span></td></tr>
+                        <tr><td><span>ULong</span></td><td><span>unsigned long</span></td></tr>
+                        <tr><td><span>bool</span></td><td><span>bool</span></td></tr>
+                        <tr><td><span>File</span></td><td><span>FILE</span></td></tr>
+                        <tr><td><span>void</span></td><td><span>void</span></td></tr>
+                    </table>
+                </div>
+
+                <p>
+                    You can reuse any other C type by using the <span>extern</span> keyword. For example, to use
+                    the C <span>long long</span> type, you can declare it like so:
+                </p>
+
+                <code>
+                    type LongLong = extern "long long";
+                </code>
+
+                <p>
+                    Quark also comes with helper types like <span>auto</span> and <span>int</span>. These types conform to
+                    whatever type they are matched with. For example, this is how you can use the <span>auto</span> type:
+                </p>
+
+                <code>
+                    i32 number = 10; <br>
+                    auto another_number = number;
+                </code>
+
+                <p>
+                    Here, the <span>another_number</span> variable will be of type <span>i32</span> since it is being
+                    assigned the value of the <span>number</span> variable. <span>int</span> will do the same thing, but will
+                    only match number types.
+                </p>
+
+                <div class="prev-next">
+                    <label for="hello-world">Previous: Hello World</label>
+                    <label for="pointer-types">Next: Pointer Types</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="pointer-types">
+            <article>
+                <h1>Pointer Types</h1>
+
+                <p>
+                    In Quark, pointer types are declared using the <span>*</span> symbol after a type or the <span>&</span>
+                    before a type. For example, to declare a pointer to an integer, you would write:
+                </p>
+
+                <code>
+                    i32* ptr_to_int;
+                </code>
+
+                <p>or</p>
+
+                <code>
+                    &i32 ptr_to_int;
+                </code>
+
+                <p>
+                    Pointers can be referenced and dereferenced using the <span>&</span> and <span>*</span> operators, similar
+                    to C.
+                </p>
+
+                <code>
+                    i32 number = 42; <br>
+                    i32* ptr_to_number = &amp;number; <br>
+                    i32 dereferenced_number = *ptr_to_number;
+                </code>
+
+                <div class="prev-next">
+                    <label for="primitive-types">Previous: Primitive Types</label>
+                    <label for="structures">Next: Structures</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="structures">
+            <article>
+                <h1>Structures</h1>
+
+                <p>
+                    Structures in Quark are similar to structs in C, but with added support for generics. You can define
+                    a structure using the <span>struct</span> keyword followed by the structure name and its fields.
+                </p>
+
+                <code>
+                    <pre>struct Person {</pre>
+                    <pre>   char* name;</pre>
+                    <pre>   u8 age;</pre>
+                    <pre>;</pre>
+                </code>
+
+                <p>
+                    You can create new instances of a structure using the following syntax:
+                </p>
+
+                <code>
+                    <pre>auto john = Person {</pre>
+                    <pre>   name: "John",</pre>
+                    <pre>   age: 30,</pre>
+                    <pre>};</pre>
+                </code>
+
+                <p>
+                    Accessing structure fields is done in the same way as in C, and structures can be dereferenced
+                    while accessing fields if you have a pointer to a structure.
+                </p>
+
+                <code>
+                    <pre>char* johns_name = john.name;</pre>
+                    <pre>Person* ptr_to_john = &amp;john;</pre>
+                    <pre>u8 johns_age = ptr_to_john->age;</pre>
+                </code>
+
+                <div class="prev-next">
+                    <label for="pointer-types">Previous: Pointer Types</label>
+                    <label for="generics">Next: Generics</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="generics">
+            <article>
+                <h1>Generics</h1>
+
+                <p>
+                    Quark supports generics, allowing you to create data structures and functions that can operate
+                    on different types. You can define a generic type by using angle brackets <span>&lt;</span>
+                    and <span>&gt;</span> to specify type parameters.
+                </p>
+
+                <code>
+                    <pre>struct Array&lt;T&gt; {</pre>
+                    <pre>   T* data;</pre>
+                    <pre>   usize size;</pre>
+                    <pre>}</pre>
+                    <br/>
+                    <pre>T echo&lt;T&gt;(T value) {</pre>
+                    <pre>   return value;</pre>
+                    <pre>}</pre>
+                </code>
+
+                <p>
+                    The Quark compiler will generate an implementation of the generic type or function for each unique type
+                    it is used with. For example, if you create an <span>Array&lt;int&gt;</span> and an
+                    <span>Array&lt;char&gt;</span>, the compiler will generate two separate structures:
+                </p>
+
+                <code>
+                    <pre>struct Array__number { int* data; size_t size; };</pre>
+                    <pre>struct Array__char { char* data; size_t size; };</pre>
+                </code>
+
+                <div class="prev-next">
+                    <label for="structures">Previous: Structures</label>
+                    <label for="control-statements">Next: Control Statements</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="control-statements">
+            <article>
+                <h1>Control Statements</h1>
+
+                <p>
+                    Quark provides standard control flow statements such as <span>if</span> and <span>while</span> similar to C.
+                    Here are some examples of how to use these control statements in Quark:
+                </p>
+
+                <code>
+                    <pre>if( &lt;condition&gt; ) {</pre>
+                    <pre>   // code to execute if condition is true</pre>
+                    <pre>}</pre>
+                    <br/>
+                    <pre>while( &lt;condition&gt; ) {</pre>
+                    <pre>   // code to execute while condition is true</pre>
+                    <pre>}</pre>
+                </code>
+
+                <div class="prev-next">
+                    <label for="generics">Previous: Generics</label>
+                    <label for="functions">Next: Functions</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="functions">
+            <article>
+                <h1>Functions</h1>
+
+                <p>
+                    Functions in Quark are defined in a similar way to C, starting with the return type, followed by the function
+                    name and parameters. Here is an example of a simple function that returns the sum of two integers:
+                </p>
+
+                <code>
+                    <pre>i32 add(i32 a, i32 b) {</pre>
+                    <pre>   return a + b;</pre>
+                    <pre>}</pre>
+                </code>
+
+                <p>
+                    Functions can also use generics to operate on different types. Here is an example of a generic function that
+                    returns the value it receives:
+                </p>
+
+                <code>
+                    <pre>T echo&lt;T&gt;(T value) {</pre>
+                    <pre>   return value;</pre>
+                    <pre>}</pre>
+                </code>
+
+                <p>
+                    Notice that the return type is used before the declaration of the generic type parameter(s).
+                </p>
+
+                <div class="prev-next">
+                    <label for="control-statements">Previous: Control Statements</label>
+                    <label for="importing">Next: Importing Other <span>.qk</span> Files</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="importing">
+            <article>
+                <h1>Importing Other <span>.qk</span> Files</h1>
+
+                <p>
+                    Quark allows you to import other <span>.qk</span> source files using the <span>import</span> keyword.
+                    This is useful for organizing your code into separate modules and reusing code across different files.
+                </p>
+
+                <p>
+                    Let's say we have a <span>print_message()</span> function defined in a file named <span>other/utils.qk</span>
+                    and we want to use it in our main file <span>main.qk</span>. Here's how you can do that:
+                </p>
+
+                <code>
+                    <pre>import other::utils;</pre>
+                    <br/>
+                    <pre>print_message("Hello World!");</pre>
+                </code>
+
+                <p>
+                    In this example, we import the <span>utils.qk</span> file located in the <span>other/</span> directory.
+                    After importing, we can directly use the <span>print_message()</span> function defined in that file.
+                </p>
+
+                <p>
+                    <span>other::utils</span> is transformed into the relative path
+                    <span>other/utils.qk</span> when searching for the file to import.
+                </p>
+
+                <div class="prev-next">
+                    <label for="functions">Previous: Functions</label>
                 </div>
             </article>
         </div>
     </main>
+
+    <script>
+        document.querySelector(location.hash)?.click();
+        window.onhashchange = () => document.querySelector(location.hash)?.click();
+    </script>
 </body>
 </html>
