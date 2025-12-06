@@ -166,7 +166,7 @@
                 <code>
                     import lib::io; <br>
                     <br>
-                    print(str::from("Hello, World!"));
+                    print("Hello, World!");
                 </code>
 
                 <p>
@@ -174,11 +174,9 @@
                     all of the source library files in the <span style="font-family: monospace;">
                     <a href="https://github.com/quark-programming/quark/tree/main/lib" target="_blank">libs/</a></span>
                     folder. As of 
-                    <a href="https://github.com/quark-programming/quark/releases/tag/Quark-0.0.1" target="_blank">0.0.1</a>,
+                    <a href="https://github.com/quark-programming/quark/releases/tag/0.1.0" target="_blank">0.1.0</a>,
                     the <span>lib::io</span> library also imports the
-                    <span>lib::str</span> library, so we can use the
-                    <span>str::from</span> function to convert a string literal into a
-                    string slice.
+                    <span>lib::str</span> library, so we can use string literals and the <span>str</span> type.
                 </p>
 
                 <div class="prev-next">
@@ -194,7 +192,7 @@
                 <p>
                     Quark has several built-in primitive types for representing data. Here are the default types and their
                     C equivalents as of 
-                    <a href="https://github.com/quark-programming/quark/releases/tag/Quark-0.0.1" target="_blank">0.0.1</a>:
+                    <a href="https://github.com/quark-programming/quark/releases/tag/0.1.0" target="_blank">0.1.0</a>:
                 </p>
 
                 <div style="display: flex; gap: 2em;">
@@ -308,7 +306,7 @@
 
                 <code>
                     <pre>struct Person {</pre>
-                    <pre>   char* name;</pre>
+                    <pre>   str name;</pre>
                     <pre>   u8 age;</pre>
                     <pre>;</pre>
                 </code>
@@ -330,7 +328,7 @@
                 </p>
 
                 <code>
-                    <pre>char* johns_name = john.name;</pre>
+                    <pre>str johns_name = john.name;</pre>
                     <pre>Person* ptr_to_john = &amp;john;</pre>
                     <pre>u8 johns_age = ptr_to_john->age;</pre>
                 </code>
