@@ -84,6 +84,11 @@
         th, td {
             padding: 0.25em 1em;
         }
+
+        .changes {
+            font-size: 0.7em;
+            color: var(--gray);
+        }
     </style>
 
     <main style="display: flex; height: 100vh;">
@@ -97,6 +102,7 @@
             <label for="primitive-types">Primitive Types</label>
             <label for="pointer-types">Pointer Types</label>
             <label for="structures">Structures</label>
+            <label for="arrays">Arrays</label>
             <label for="generics">Generics</label>
 
             <h3 style="margin-top: 0.25em">Control Flow</h3>
@@ -104,7 +110,7 @@
             <label for="functions">Functions</label>
 
             <h3 style="margin-top: 0.25em">Misc</h3>
-            <label for="imports">Imports</label>
+            <label for="importing">Importing</label>
             <a href="https://github.com/quark-programming/quark/tree/main/lib" style="color: #ccc;"
             target="_blank">Libraries</a>
         </nav>
@@ -335,8 +341,46 @@
 
                 <div class="prev-next">
                     <label for="pointer-types">Previous: Pointer Types</label>
+                    <label for="arrays">Next: Arrays</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="arrays">
+            <article>
+                <h1>Arrays</h1>
+
+                <p>
+                    In Quark, you can define stack-allocated fixed-sized arrays using the <span>[]</span> syntax
+                    for both types and array literals.
+                </p>
+
+                <code>
+                    <pre>import lib::vector;</pre>
+                    <pre>[i32] numbers = [1, 2, 3];</pre>
+                </code>
+
+                <p>
+                    Arrays are shorthand for the <span>Slice</span> type in the <span>lib::vector</span> library.
+                </p>
+
+                <p>
+                    If you need to create a dynamically-sized or heap-allocated array, you can use the <span>Vec</span> type
+                </p>
+
+                <code>
+                    <pre>import lib::vector;</pre>
+                    <br>
+                    <pre>Vec&lt;i32&gt; numbers = Vec::from([1, 2, 3]);</pre>
+                </code>
+
+                <div class="prev-next">
+                    <label for="structures">Previous: Structures</label>
                     <label for="generics">Next: Generics</label>
                 </div>
+
+                <ul class="changes">
+                    <li>Added <a href="https://github.com/quark-programming/quark/releases/tag/0.2.0">0.2.0</a></li>
+                </ul>
             </article>
 
             <input type="radio" name="page" id="generics">
@@ -372,7 +416,7 @@
                 </code>
 
                 <div class="prev-next">
-                    <label for="structures">Previous: Structures</label>
+                    <label for="arrays">Previous: Arrays</label>
                     <label for="control-statements">Next: Control Statements</label>
                 </div>
             </article>
