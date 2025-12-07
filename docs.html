@@ -154,9 +154,24 @@
                     $ cc output_code.c -o final_executable
                 </code>
 
+                <p>
+                    As of <a href="https://github.com/quark-programming/quark/releases/tag/0.2.1" target="_blank">0.2.1</a>
+                    the compiler requires the <span>lib</span> folder to be present in the imports directory. If needed,
+                    you can specify a custom imports directory using the <span>-l</span> flag.
+                </p>
+
+                <code>
+                    $ ./qc path/to/source_file.qk -o output_code.c -l path/to/imports/dir
+                </code>
+
                 <div class="prev-next">
                     <label for="hello-world">Next: Hello World</label>
                 </div>
+
+                <ul class="changes">
+                    <li>Added <span>-l</span> flag
+                        <a href="https://github.com/quark-programming/quark/releases/tag/0.2.1" target="_blank">0.2.1</a></li>
+                </ul>
             </article>
 
             <input type="radio" name="page" id="hello-world" />
@@ -170,25 +185,24 @@
                 </p>
 
                 <code>
-                    import lib::io; <br>
-                    <br>
                     print("Hello, World!");
                 </code>
 
                 <p>
-                    We start by importing the standard I/O library so we can use the print function. You can see
-                    all of the source library files in the <span style="font-family: monospace;">
-                    <a href="https://github.com/quark-programming/quark/tree/main/lib" target="_blank">libs/</a></span>
-                    folder. As of 
-                    <a href="https://github.com/quark-programming/quark/releases/tag/0.1.0" target="_blank">0.1.0</a>,
-                    the <span>lib::io</span> library also imports the
-                    <span>lib::str</span> library, so we can use string literals and the <span>str</span> type.
+                    The Quark compiler automatically imports the standard library, including
+                    <a href="https://github.com/quark-programming/quark/blob/main/lib/io.qk" target="_blank"><span>lib::io</span></a>,
+                    which contains the <span>print()</span> function used to output text to the console.
                 </p>
 
                 <div class="prev-next">
                     <label for="quick-start">Previous: Quick Start</label>
                     <label for="primitive-types">Next: Primitive Types</label>
                 </div>
+                
+                <ul class="changes">
+                    <li>Default importing <span>lib::std</span>
+                    <a href="https://github.com/quark-programming/quark/releases/tag/0.2.1" target="_blank">0.2.1</a></li>
+                </ul>
             </article>
 
             <input type="radio" name="page" id="primitive-types">
@@ -197,8 +211,8 @@
 
                 <p>
                     Quark has several built-in primitive types for representing data. Here are the default types and their
-                    C equivalents as of 
-                    <a href="https://github.com/quark-programming/quark/releases/tag/0.1.0" target="_blank">0.1.0</a>:
+                    C equivalents as of as seen in
+                    <a href="https://github.com/quark-programming/quark/blob/main/lib/types.qk" target="_blank"><span>lib::types</span></a>
                 </p>
 
                 <div style="display: flex; gap: 2em;">
@@ -263,6 +277,11 @@
                     <label for="hello-world">Previous: Hello World</label>
                     <label for="pointer-types">Next: Pointer Types</label>
                 </div>
+
+                <ul class="changes">
+                    <li>Moved to <span>lib::types</span>
+                    <a href="https://github.com/quark-programming/quark/releases/tag/0.2.1" target="_blank">0.2.1</a></li>
+                </ul>
             </article>
 
             <input type="radio" name="page" id="pointer-types">
