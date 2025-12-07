@@ -111,6 +111,7 @@
 
             <h3 style="margin-top: 0.25em">Misc</h3>
             <label for="importing">Importing</label>
+            <label for="external-c">External C</label>
             <a href="https://github.com/quark-programming/quark/tree/main/lib" style="color: #ccc;"
             target="_blank">Libraries</a>
         </nav>
@@ -583,11 +584,46 @@
 
                 <p>
                     <span>other::utils</span> is transformed into the relative path
-                    <span>other/utils.qk</span> when searching for the file to import.
+                    <span>IMPORT_PATH/other/utils.qk</span> when searching for the file to import.
                 </p>
+
+                <p>
+                    By default the <span>IMPORT_PATH</span> is set to <span>"."</span>, but it can be specified using the
+                    <span>-l</span> flag when running the compiler.
+                </p>
+
+                <code>
+                    $ ./qc main.qk -o output.c -l path/to/imports/dir
+                </code>
 
                 <div class="prev-next">
                     <label for="functions">Previous: Functions</label>
+                    <label for="external-c">Next: Using External C Code</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="external-c">
+            <article>
+                <h1>Using External C Code</h1>
+
+                <p>
+                    Quark allows you to interface with external C code using the <span>extern</span> keyword.
+                    This is useful for leveraging existing C libraries or functions within your Quark programs.
+                </p>
+
+                <code>
+                    <pre>void extern puts(char* data);</pre>
+                    <pre>T* extern malloc&lt;T&gt;(usize size);</pre>
+                    <pre>File* extern stdout = extern&lt;File*&gt; stdout;</pre>
+                </code>
+
+                <p>
+                    None of these declarations will be compiled to C, but you can use them like regular Quark
+                    functions and variables.
+                </p>
+
+                <div class="prev-next">
+                    <label for="importing">Previous: Importing Other <span>.qk</span> Files</label>
                 </div>
             </article>
         </div>
