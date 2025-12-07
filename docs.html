@@ -104,6 +104,7 @@
             <label for="structures">Structures</label>
             <label for="arrays">Arrays</label>
             <label for="generics">Generics</label>
+            <label for="optionals">Optionals</label>
 
             <h3 style="margin-top: 0.25em">Control Flow</h3>
             <label for="control-statements">Control Statements</label>
@@ -492,8 +493,62 @@
 
                 <div class="prev-next">
                     <label for="arrays">Previous: Arrays</label>
+                    <label for="optionals">Next: Optionals</label>
+                </div>
+            </article>
+
+            <input type="radio" name="page" id="optionals">
+            <article>
+                <h1>Optionals</h1>
+
+                <p>
+                    In Quark, optionals are a way to represent values that may or may not be present. An optional type is defined
+                    using the <span>?</span> symbol after a type. For example, to define an optional integer, you would write:
+                </p>
+
+                <code>
+                    i32? maybe_number;
+                </code>
+
+                <p>
+                    Optional values are created using the <span>Option</span> struct from
+                    <a href="https://github.com/quark-programming/quark/blob/0.3.0/lib/containers.qk" target="_blank">
+                        <span>lib::containers</span></a>.
+                </p>
+
+                <code>
+                    maybe_number = Option::Some(42); <br>
+                    maybe_number = Option::None();
+                </code>
+
+                <p>
+                    Optionals can also be optionally coalesced using the <span>?</span> operator when using any operator
+                    with <a href="https://en.cppreference.com/w/c/language/operator_precedence.html" target="_blank">
+                        a precedence of 1</a>.
+                </p>
+
+                <code>
+                    <pre>struct MyStruct {</pre>
+                    <pre>  i32 value;</pre>
+                    <pre>}</pre>
+                    <br>
+                    <pre>MyStruct? ptr = Option::None();</pre>
+                    <pre>i32? value = ptr?.value;</pre>
+                </code>
+
+                <code>
+                    <pre>i32*? maybe_array = Option::None();</pre>
+                    <pre>i32? maybe_first = maybe_array?[0];</pre>
+                </code>
+
+                <div class="prev-next">
+                    <label for="generics">Previous: Generics</label>
                     <label for="control-statements">Next: Control Statements</label>
                 </div>
+
+                <ul class="changes">
+                    <li>Added <a href="https://github.com/quark-programming/quark/releases/tag/0.3.0" target="_blank">0.3.0</a></li>
+                </ul>
             </article>
 
             <input type="radio" name="page" id="control-statements">
@@ -516,7 +571,7 @@
                 </code>
 
                 <div class="prev-next">
-                    <label for="generics">Previous: Generics</label>
+                    <label for="optionals">Previous: Optionals</label>
                     <label for="functions">Next: Functions</label>
                 </div>
             </article>
