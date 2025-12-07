@@ -358,6 +358,61 @@
                     <pre>u8 johns_age = ptr_to_john->age;</pre>
                 </code>
 
+                <p>
+                    Structures can also contain functions as both static methods and instance methods. You can define both
+                    the same way as regular functions, but instance methods must include a <span>self</span> parameter to
+                    reference the instance.
+                </p>
+
+                <code>
+                    <pre>struct Counter {</pre>
+                    <pre>   u32 count;</pre>
+                    <br>
+                    <pre>   u32 get_count(self) {</pre>
+                    <pre>       return self.count;</pre>
+                    <pre>   }</pre>
+                    <br/>
+                    <pre>   Counter new() {</pre>
+                    <pre>       return Counter { count: 0 };</pre>
+                    <pre>   }</pre>
+                    <pre>};</pre>
+                </code>
+
+                <p>
+                    With this counter struct, we can create a new instance and call its methods like so:
+                </p>
+
+                <code>
+                    <pre>Counter counter = Counter::new();</pre>
+                    <pre>u32 current_count = counter.get_count();</pre>
+                </code>
+
+                <p>
+                    Instance methods can also modify the structure's fields through the <span>&self</span> parameter.
+                </p>
+
+                <code>
+                    <pre>struct Counter {</pre>
+                    <pre>   ...</pre>
+                    <pre>   void increment(&amp;self) {</pre>
+                    <pre>       self->count++;</pre>
+                    <pre>   }</pre>
+                    <pre>   ...</pre>
+                    <pre>}</pre>
+                </code>
+
+                <p>
+                    You can also define methods outside of the structure definition using the <span>::</span> operator in
+                    the function name. Note that the <span>self</span> keyword will not work here.
+                </p>
+
+                <code>
+                    <pre>u32 Counter::decrement(Counter* self) {</pre>
+                    <pre>   self->count--;</pre>
+                    <pre>   return self->count;</pre>
+                    <pre>}</pre>
+                </code>
+
                 <div class="prev-next">
                     <label for="pointer-types">Previous: Pointer Types</label>
                     <label for="arrays">Next: Arrays</label>
