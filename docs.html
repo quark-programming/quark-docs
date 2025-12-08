@@ -89,6 +89,22 @@
             font-size: 0.7em;
             color: var(--gray);
         }
+
+        @media (max-aspect-ratio: 1) {
+            main > nav {
+                display: none !important;
+            }
+
+            main > div {
+                width: 100vw !important;
+                padding: 2em !important;
+            }
+
+            div.multi-table,
+            div.prev-next {
+                flex-direction: column;
+            }
+        }
     </style>
 
     <main style="display: flex; height: 100vh;">
@@ -217,7 +233,7 @@
                     <a href="https://github.com/quark-programming/quark/blob/main/lib/types.qk" target="_blank"><span>lib::types</span></a>
                 </p>
 
-                <div style="display: flex; gap: 2em;">
+                <div class="multi-table" style="display: flex; gap: 2em;">
                     <table>
                         <tr><th>Quark Type</th><th>C Equivalent</th></tr>
                         <tr><td><span>u8</span></td><td><span>uint8_t</span></td></tr>

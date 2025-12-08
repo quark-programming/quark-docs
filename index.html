@@ -19,6 +19,23 @@
         </div>
     </nav>
 
+    <style>
+        @media (max-aspect-ratio: 1) {
+            header > div {
+                flex-direction: column;
+                gap: 2em;
+
+                & img {
+                    width: 60% !important;
+                }
+            }
+
+            #compilation {
+                display: none !important;
+            }
+        }
+    </style>
+
     <header style="height: 60vh; display: grid; place-items: center;">
         <div style="display: flex; align-items: center; width: 100%; justify-content: space-around;">
             <img src="assets/title.png" style="width: 40%" />
@@ -45,7 +62,7 @@
             <code style="font-family: monospace">.qk</code> source files into compilable C code.
         </p>
 
-        <div style="display: grid; gap: 1em; grid-auto-flow: column; place-items: center;">
+        <div id="compilation" style="display: grid; gap: 1em; grid-auto-flow: column; place-items: center;">
             <code style="padding: 1em; background: #0004; color: #ddd; width: calc(50vw - 14em);">
                 <pre>struct Array&lt;T&gt; {</pre>
                 <pre>   T* data;</pre>
