@@ -1,1 +1,67 @@
-@import url(css/default.css)
+@import url(css/default.css);
+
+label {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+
+    &:hover {
+        color: white;
+    }
+}
+
+input[type="radio"] { display: none; }
+
+article { 
+    display: none; 
+    flex-direction: column;
+    gap: 2em;
+}
+
+input[type="radio"]:checked + article { display: flex; }
+
+.prev-next {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0.25em;
+    gap: 1em;
+
+    > label {
+        flex: 1;
+        padding: 1em;
+        background: #0004
+    }
+}
+
+code {
+    background: #0004;
+    color: #ddd;
+    padding: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    font-family: monospace;
+}
+
+span {
+    font-family: monospace;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #ffffff02;
+}
+
+th, td {
+    padding: 0.25em 1em;
+}
+
+.changes {
+    font-size: 0.7em;
+    color: var(--gray);
+}
