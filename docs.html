@@ -107,7 +107,8 @@
                 <p>
                     As of <a href="https://github.com/quark-programming/quark/releases/tag/0.2.1" target="_blank">0.2.1</a>
                     the compiler requires the <span>lib</span> folder to be present in the imports directory. If needed,
-                    you can specify a custom imports directory using the <span>-l</span> flag.
+                    you can specify a custom imports directory using the <span>-l</span> flag. (defaults to the current
+                    working directory)
                 </p>
 
                 <code>
@@ -379,7 +380,6 @@
                 </p>
 
                 <code>
-                    <pre>import lib::vector;</pre>
                     <pre>[i32] numbers = [1, 2, 3];</pre>
                 </code>
 
@@ -392,8 +392,6 @@
                 </p>
 
                 <code>
-                    <pre>import lib::vector;</pre>
-                    <br>
                     <pre>Vec&lt;i32&gt; numbers = Vec::from([1, 2, 3]);</pre>
                 </code>
 
