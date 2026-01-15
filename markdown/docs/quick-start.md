@@ -26,6 +26,12 @@ As of 0.2.1 the compiler requires the lib folder to be present in the imports di
 ./qc path/to/source_file.qk -o output_code.c -l path/to/imports/dir
 ```
 
+Use the `-h` flag for help
+
+```bash
+./qc -h
+```
+
 <footer>
 [Next: Hello World](#hello-world)
 </footer>

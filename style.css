@@ -21,13 +21,19 @@ td {
     padding: .2em;
 }
 
-pre > code {
+pre > code:not(.no-code) {
     display: block;
     padding: 1em;
     line-height: 1.5;
 }
 
-code {
+code.no-code > pre {
+    display: inline;
+    font-size: .7em;
+    margin-left: .7em;
+}
+
+code:not(.no-code) {
     background: rgb(44, 44, 54);
     padding: .1em .4em;
     border-radius: 4px;
@@ -58,4 +64,9 @@ footer {
             border: 1px solid transparent;
         }
     }
+}
+
+ul {
+    margin: .5em 2em;
+    > li { margin: .2em 0; }
 }

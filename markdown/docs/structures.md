@@ -1,6 +1,8 @@
 # Structures
 
-Structures in Quark are similar to structs in C, but with added support for generics. You can define a structure using the `struct` keyword followed by the structure name and its fields.
+Structures are how Quark implements **Object Oriented Programming**. You can define a structure with different fields that hold multiple types of data, and define **instance** and **static** methods to transform that data.
+
+You can define a structure using the `struct` keyword followed by the structure name and its fields:
 
 ```quark
 struct Person {
@@ -9,68 +11,96 @@ struct Person {
 }
 ```
 
-You can create new instances of a structure using the following syntax:
+You can create instances of the structure using its name as the type, followed by the data inside of the structure. The fields can be named, or nameless (in the order of their definition):
 
 ```quark
-auto john = Person {
-   name: "John",
-   age: 30,
+Person john = Person { "John", 32 };
+\
+// or
+\
+Person dave = Person {
+   name: "Dave",
+   age: 27,
 };
 ```
 
-Accessing structure fields is done in the same way as in C, and structures can be dereferenced while accessing fields if you have a pointer to a structure.
+You can access and modify these fields using the `.` syntax, or dereference and access using the `->` operator.
 
 ```quark
-str johns_name = john.name;
-Person* ptr_to_john = &john;
-u8 johns_age = ptr_to_john->age;
+print(john.name); // John
+print_i32(dave.age); // 27
+\
+Person* john_ref = &john;
+\
+print_i32(john->age); // 32
 ```
 
-Structures can also contain functions as both static methods and instance methods. You can define both the same way as regular functions, but instance methods must include a `self` parameter to reference the instance.
+Structures can also be defined with **static** and **instance** methods. You can access the instance object using the `self` keyword as the first argument in a function.
 
 ```quark
 struct Counter {
-   u32 count;
+   i32 value;
 \
-   u32 get_count(self) {
-       return self.count;
-   }
-\
-   Counter new() {
-       return Counter { count: 0 };
+   void print(self) {
+      print_i32(self.value);
    }
 }
 ```
 
-With this counter struct, we can create a new instance and call its methods like so:
-
-```quark
-Counter counter = Counter::new();
-u32 current_count = counter.get_count();
-```
-
-Instance methods can also modify the structure's fields through the `&self` parameter.
+You can also modify the instance object if the `self` argument is a reference:
 
 ```quark
 struct Counter {
+   i32 value;
    // ...
    void increment(&self) {
-       self->count++;
+      self->value += 1;
    }
-   // ...
 }
+```
+
+You can then call these methods like they are fields on the instance object,
+
+```quark
+Counter counter = Counter { 0 };
+\
+counter.increment(); // First argument is replaced with '&counter'
+\
+counter.print(); // 1
+```
+
+You can also create **static** methods and call any method as a static method using the `::` syntax on the structure name:
+
+```quark
+struct Counter {
+   // ...
+   Counter new() {
+      return Counter { 0 };
+   }
+}
+\
+Counter counter = Counter::new();
+\
+Counter::increment(&counter);
+\
+counter.print(); // 1
 ```
 
 You can also define methods outside of the structure definition using the `::` operator in the function name. Note that the self keyword will not work here.
 
 ```quark
-u32 Counter::decrement(Counter* self) {
+void Counter::decrement(Counter* self) {
    self->count--;
-   return self->count;
 }
+\
+Counter counter = Counter::new();
+\
+counter.decrement();
+\
+counter.print(); // -1
 ```
 
 <footer>
-[Prev: Pointer Types](#pointer-types)
-[Next: Arrays](#arrays)
+[Prev: Compound Types](#compound-types)
+[Next: Generics](#generics)
 </footer>

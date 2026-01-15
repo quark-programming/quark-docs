@@ -1,4 +1,4 @@
-# Importing Other Quark Files
+# Multiple File Projects
 
 Quark allows you to import other `.qk` source files using the import keyword. This is useful for organizing your code into separate modules and reusing code across different files.
 
@@ -21,6 +21,5 @@ By default the `IMPORT_PATH` is set to `./`, but it can be specified using the `
 ```
 
 <footer>
-[Prev: Functions](#functions)
-[Next: External C](#external-c)
+[Prev: External C Functions](#external-c-functions)
 </footer>

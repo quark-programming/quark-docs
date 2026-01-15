@@ -3,20 +3,26 @@
     
     ["Quick Start", "quick-start"],
     ["Hello World", "hello-world"],
+    ["> Comments", "comments"],
 
     ["Types", 3],
-    ["Primitive Types", "primitive-types"],
-    ["Pointer Types", "pointer-types"],
-    ["Structures", "structures"],
-    ["Arrays", "arrays"],
-    ["Generics", "generics"],
-    ["Optionals", "optionals"],
+    ["Types Basics", "types-basics"],
+    ["> Compound Types", "compound-types"],
+    ["> Structures", "structures"],
+    ["> Generics", "generics"],
+    ["> Type Modifiers", "type-modifiers"],
+
+    ["Values", 3],
+    ["Literals", "literals"],
+    ["Variables", "variables"],
+    ["> Constants", "constants"],
+    ["Operators", "operators"],
 
     ["Control Flow", 3],
     ["Control Statements", "control-statements"],
     ["Functions", "functions"],
+    ["> External C Functions", "external-c-functions"],
 
     ["Misc", 3],
-    ["Importing", "importing"],
-    ["External C", "external-c"]
+    ["Multiple Files", "multiple-files"]
 ]

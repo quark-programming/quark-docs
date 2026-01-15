@@ -16,11 +16,6 @@
                 padding: 2em !important;
                 padding-top: 7em !important;
             }
-
-            div.multi-table,
-            div.prev-next {
-                flex-direction: column;
-            }
         }
     </style>
 
@@ -50,6 +45,7 @@
 
             <script>
                 const nav_clicks = {};
+                let last_inset = 0;
 
                 load_self("markdown/docs/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value], i) => {
                     if(typeof value === "number") {
@@ -58,8 +54,14 @@
                         </h${value}>`;
                     }
 
+                    if (label.startsWith(">")) label = `<code class="no-code"><pre>${["i.   ", "ii.  ", "iii. ", "iv.  ", "v.   "][last_inset++]}</pre></code>${label.slice(1).trim()}`;
+                    else last_inset = 0;
+
                     const render = markdown(await fetch(`markdown/docs/${value}.md`).then(res => res.text()));
-                    nav_clicks[value] = () => document.querySelector("article").innerHTML = render;
+                    nav_clicks[value] = () => {
+                        document.querySelector("article").innerHTML = render;
+                        document.querySelector("main > div").scrollTo(0, 0);
+                    }
                     if (location.hash.slice(1) === value || i === 1) nav_clicks[value]();
                     return `<a style="text-decoration: none" href="javascript:" onclick="location.hash = '#${value}'">${label}</a>`;
                 })));

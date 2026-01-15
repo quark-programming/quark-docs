@@ -10,5 +10,5 @@ The Quark compiler automatically imports the standard library, including `lib::i
 
 <footer>
 [Prev: Quick Start](#quick-start)
-[Next: Primitive Types](#primitive-types)
+[Next: Types Basics](#types-basics)
 </footer>
