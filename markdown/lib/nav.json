@@ -1,0 +1,22 @@
+[
+    ["Standard Library", 2],
+
+    ["lib::types", "types"],
+    ["lib::constants", "constants"],
+    ["lib::error", "error"],
+
+    ["Utils", 3],
+
+    ["lib::slice", "slice"],
+    ["> Slice", "slice-Slice"],
+    ["> str", "slice-str"],
+    ["> Range", "slice-Range"],
+
+    ["lib::io", "io"],
+
+    ["lib::containers", "containers"],
+    ["> Option", "containers-Option"],
+
+    ["lib::vector", "vector"],
+    ["> Vec", "vector-Vec"]
+]

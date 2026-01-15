@@ -22,4 +22,5 @@ By default the `IMPORT_PATH` is set to `./`, but it can be specified using the `
 
 <footer>
 [Prev: External C Functions](#external-c-functions)
+[Quark Standard Library](lib.html)
 </footer>

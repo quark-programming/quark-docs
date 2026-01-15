@@ -3,7 +3,7 @@ window.markdown_language = (lang, text) =>
     bash: () =>
       text.replaceAll(/^(.+? )/gm, "<span style='color: #7AA89F'>$1</span>"),
     quark: () => text.replaceAll(
-      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|([A-Z_]{2,})|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n)|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
+      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n)|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
       (_, ...a) => [
         () => `<i style="color: #957FB8">${a[0]}</i>`,
         () => `<span style="color: #957FB8">${a[1]}</span>`,

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quark Docs</title>
+    <title>Quark Standard Library</title>
 
     <style>
         @media (max-aspect-ratio: 1) {
@@ -47,7 +47,7 @@
                 const nav_clicks = {};
                 let last_inset = 0;
 
-                load_self("markdown/docs/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value], i) => {
+                load_self("markdown/lib/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value], i) => {
                     if(typeof value === "number") {
                         return `<h${value} style="margin-${value - 2 ? "top" : "bottom"}: .25em;">
                             ${label}
@@ -57,7 +57,7 @@
                     if (label.startsWith(">")) label = `<code class="no-code"><pre>${["i.   ", "ii.  ", "iii. ", "iv.  ", "v.   "][last_inset++]}</pre></code>${label.slice(1).trim()}`;
                     else last_inset = 0;
 
-                    const render = markdown(await fetch(`markdown/docs/${value}.md`).then(res => res.text()));
+                    const render = markdown(await fetch(`markdown/lib/${value}.md`).then(res => res.text()));
                     nav_clicks[value] = () => {
                         document.querySelector("article").innerHTML = render;
                         document.querySelector("main > div").scrollTo(0, 0);
@@ -69,7 +69,7 @@
                 window.onhashchange = () => nav_clicks[location.hash.slice(1)]?.();
             </script>
 
-            <a href="lib.html" style="color: #ccc;" target="_blank">Standard Library</a>
+            <a href="docs.html" style="color: #ccc;" target="_blank">Docs</a>
         </nav>
 
         <div style="width: calc(100vw - 15em); box-sizing: border-box; padding: 4em; padding-top: 9em; overflow-y: scroll;">
