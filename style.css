@@ -1,8 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-        'Open Sans', 'Helvetica Neue', sans-serif;
     color: white;
 }
 
@@ -10,81 +8,54 @@
     --purple: #6c00ff;
     --purple2: #a200ff;
     --background: rgb(22, 22, 28);
-}
 
-code {
-    font-family: monospace;
-    & * { font-family: monospace; }
-}
-
-code > pre {
-    width: 100%;
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-}
-
-label {
-    cursor: pointer;
-    color: #ccc;
-    transition: color 0.2s;
-
-    &:hover {
-        color: white;
-    }
-}
-
-input[type="radio"] { display: none; }
-
-article { 
-    display: none; 
-    flex-direction: column;
-    gap: 2em;
-}
-
-input[type="radio"]:checked + article { display: flex; }
-
-.prev-next {
-    width: 100%;
-    display: flex;
-    box-sizing: border-box;
-    padding: 0.25em;
-    gap: 1em;
-
-    > label {
-        flex: 1;
-        padding: 1em;
-        background: #0004
-    }
-}
-
-code {
-    background: #0004;
-    color: #ddd;
-    padding: 1em;
-    width: 100%;
-    box-sizing: border-box;
-    display: block;
-    font-family: monospace;
-}
-
-span {
-    font-family: monospace;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 tr:nth-child(even) {
-    background-color: #ffffff02;
+    background-color: #ffffff04;
 }
 
-th, td {
-    padding: 0.25em 1em;
+td {
+    padding: .2em;
 }
 
-.changes {
-    font-size: 0.7em;
-    color: var(--gray);
+pre > code {
+    display: block;
+    padding: 1em;
+    line-height: 1.5;
+}
+
+code {
+    background: rgb(44, 44, 54);
+    padding: .1em .4em;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+nav a {
+    transition: color 0.2s;
+
+    &:hover {
+        color: #aaa;
+    }
+}
+
+footer {
+    display: flex;
+    gap: 1em;
+    
+    & a {
+        flex: 1;
+        padding: 1em;
+        text-decoration: none;
+        border: 1px solid rgb(44, 44, 54);
+        border-radius: 4px;
+        transition: border 0.4s;
+
+        &:hover {
+            border: 1px solid transparent;
+        }
+    }
 }
