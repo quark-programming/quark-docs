@@ -2,34 +2,62 @@
 
 All source code needed to build your first project can be found on the GitHub repository: [quark-programming/quark](https://github.com/quark-programming/quark)
 
-You can download the source code using the [latest release](https://github.com/quark-programming/quark/releases)
+## Building Globally
 
-After downloading the source code, navigate to its folder and build the project using make. You can specify the output binary name using the out variable. By default, it will create a binary named `qc`.
+Start by creating a directory for the SDK files, I recommend creating the directory `~/SDK/quark`. In this directory, we can initialize the github repository and pull the code to the compiler:
 
 ```bash
-make build
-make build QC=my_compiler
+# ~/SDK/quark
+git init
+git remote add origin https://github.com/quark-programming/quark.git
+git branch -M main
+git pull origin main
 ```
 
-All source code is licensed under the MIT License. See the [LICENSE](https://github.com/quark-programming/quark/blob/main/LICENSE) file for more information.
+Whenever there is a new version or fix, you can run the `git pull` command to get the latest changes to the `main` branch on the repository.
 
-When writing Quark code, source files should use the `.qk` file extension. You can compile your Quark source files using the compiler like so
+Next, we need to build the compiler using `make`. You can either build the compiler with the default `qc` executable name, or specify one yourself:
 
 ```bash
-./qc path/to/source_file.qk -o output_code.c
-cc output_code.c -o final_executable
+make # or
+make OUT=name
 ```
 
-As of 0.2.1 the compiler requires the lib folder to be present in the imports directory. If needed, you can specify a custom imports directory using the -l flag. (defaults to the current working directory)
+Finally, you can modify your `~/.bashrc` or `~/.zshrc` file to add the SDK to your `$PATH`,
 
 ```bash
-./qc path/to/source_file.qk -o output_code.c -l path/to/imports/dir
+# Add to the bottom of either '.bashrc' or '.zshrc'
+export QUARK_ROOT="/absolute/path/to/JDK/quark"
+export PATH="$PATH:$QUARK_ROOT"
 ```
 
-Use the `-h` flag for help
+After closing and restarting your terminal you should be able to run `qc` to get the current version,
 
 ```bash
-./qc -h
+qc -v
+```
+
+Just remember to include `$QUARK_ROOT` as an import directory whenever compiling,
+
+```bash
+qc [...] -l $QUARK_ROOT
+```
+
+## Building Locally
+
+You can download the latest source code using the [latest release](https://github.com/quark-programming/quark/releases)
+
+After downloading the source code, navigate to its folder and build the compiler using `make`. You can either build the compiler with the default `qc` executable name, or specify one yourself:
+
+```bash
+make # or
+make OUT=name
+```
+
+You can then use the executable with the relative `./qc`:
+
+```bash
+./qc -v
 ```
 
 <footer>

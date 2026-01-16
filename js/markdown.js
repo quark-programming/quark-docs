@@ -1,7 +1,14 @@
 window.markdown_language = (lang, text) =>
   ({
     bash: () =>
-      text.replaceAll(/^(.+? )/gm, "<span style='color: #7AA89F'>$1</span>"),
+      text.replaceAll(/\b(export)\b|^([^#]+? )|(\$[A-Z_]+)\b|\b(\w+(?==))|(#.+?\n)/gm,
+        (_, ...a) => [
+          () => `<i style="color: #957FB8">${a[0]}</i>`,
+          () => `<span style='color: #7AA89F'>${a[1]}</span>`,
+          () => `<span style='color: #D27E99'>${a[2]}</span>`,
+          () => `<span style='color: #E6C384'>${a[3]}</span>`,
+          () => `<span style='color: #727169'>${a[4]}</span>`,
+        ][a.findIndex((x) => x)]()),
     quark: () => text.replaceAll(
       /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n)|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
       (_, ...a) => [
