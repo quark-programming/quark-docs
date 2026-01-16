@@ -10,7 +10,7 @@ window.markdown_language = (lang, text) =>
           () => `<span style='color: #727169'>${a[4]}</span>`,
         ][a.findIndex((x) => x)]()),
     quark: () => text.replaceAll(
-      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n)|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
+      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n|\n(?=\n))|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
       (_, ...a) => [
         () => `<i style="color: #957FB8">${a[0]}</i>`,
         () => `<span style="color: #957FB8">${a[1]}</span>`,
@@ -27,12 +27,12 @@ window.markdown_language = (lang, text) =>
     ),
     none: () => text,
     c: () => markdown_language("quark", text),
-  }[lang]());
+  }[lang]?.() ?? text);
 
 window.markdown = (text) =>
   `<span>${text
     .replaceAll(
-      /(#+) (.+?)\n|\[(.+?\]\(.+?)\)|```(\w+\n[\s\S]+?)```|`(.+?)`|\*\*(.+?)\*\*|> (.+?)\n/g,
+      /(#+) (.+?)\n|\[(.+?\]\(.+?)\)|```(\w*\n[\s\S]+?)```|`(.+?)`|\*\*(.+?)\*\*|> (.+?)\n/g,
       (_, ...a) =>
         [
           () => `<h${a[0].length} color="white">${a[1]}</h${a[0].length}>\n`,

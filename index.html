@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="assets/icon.png" />
     <link rel="stylesheet" href="style.css" />
 
+    <script src="js/loader.js"></script>
+    <script src="js/markdown.js"></script>
+
     <style>
         @media (max-aspect-ratio: 1) {
             nav {
@@ -42,7 +45,7 @@
     </style>
 </head>
 <body>
-    <nav style="position: fixed; height: 5em; width: 100%; display: flex; justify-content: end;">
+    <nav style="position: fixed; height: 5em; width: 100%; display: flex; justify-content: end; background: var(--background);">
         <div style="display: flex; align-items: center; gap: 1em; padding-right: 3em;">
             <a href="https://github.com/quark-programming/quark" target="_blank">GitHub</a>
             <a href="docs.html">Docs</a>
@@ -91,9 +94,31 @@
         </div>
     </header>
 
-    <div style="display: flex; gap: 4em; padding: 12em; flex-direction: column;">
-        <img alt="Code Screenshot 1" src="assets/screenshot-1.png" style="height: 100%;" />
-        <img alt="Code Screenshot 2" src="assets/screenshot-2.png" style="height: 100%;"/>
-    </div>
+    <main style="padding: 5em;">
+        <h1 style="color: black;">Quark Projects</h1>
+        <hr style="margin-top: .5em; margin-bottom: 2em;" />
+
+        <div style="display: flex; flex-direction: column; gap: 2em;">
+            <script>
+                load_self("markdown/projects.json", text => Promise.all(JSON.parse(text).map(async project => {
+                    return `<div style="padding: 1em; border: 1px solid var(--background); border-radius: 4px;">
+                        <a href="project.html#${project.github}" style="display: flex; text-decoration: none;">
+                            <h3 style="color: black;">${project.name}</h3>
+                            <p style="margin-left: auto; color: black; font-size: .5em;">click to see README</p>
+                        </a>
+                        <a style="color: blue; font-size: .7em;"
+                                href="https://github.com/${project.github}" target="_blank">
+                            ${project.github}
+                        </a>
+                        <a href="project.html#${project.github}"
+                                style="font-size: .4em; padding-top: 2em; display: block; text-decoration: none;">${
+                            markdown(await fetch(`markdown/snippets/${project.snippet}.md`).then(res => res.text()))
+                        }</a>
+                        <p style="font-size: .5em; color: black; margin-top: .2em;">code snippet</p>
+                    </div>`;
+                })))
+            </script>
+        </div>
+    </main>
 </body>
 </html>

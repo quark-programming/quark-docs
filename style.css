@@ -38,6 +38,7 @@ code:not(.no-code) {
     padding: .1em .4em;
     border-radius: 4px;
     font-family: monospace;
+    overflow-y: scroll;
 }
 
 nav a {

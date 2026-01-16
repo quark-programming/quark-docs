@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quark Projects</title>
+
+    <link rel="shortcut icon" href="assets/icon.png" />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="js/loader.js"></script>
+    <script src="js/markdown.js"></script>
+</head>
+<body style="display: flex; flex-direction: column; gap: 2em; padding: 4em; background: var(--background);">
+    <script>
+        load_self(`https://raw.githubusercontent.com/${location.hash.slice(1)}/refs/heads/main/README.md`, markdown);
+    </script>
+</body>
