@@ -141,7 +141,16 @@
 
             @media (max-width: 630px) {
                 code {
-                    font-size: 1.5vw;
+                    font-size: 2vw;
+                }
+
+                main {
+                    padding: 2em !important;
+                    padding-top: 5em !important;
+                
+                    > div {
+                        gap: 2em !important;
+                    }
                 }
             }
         </style>
@@ -221,10 +230,14 @@ build:
 
         <div>
             <div class="description">
-                <p>
-                    Create and run threads with shared state using the external threads library
-                    <a href="https://github.com/ephf/quark-threads" target="_blank">ephf/threads</a>.
-                </p>
+                <div>
+                    <p class="experimental" style="font-size: 0.7em; border-left: 1px solid #f1c309; padding-left: 0.5em;">
+                        experimental</p>
+                    <p>
+                        Create and run threads with shared state using the external threads library
+                        <a href="https://github.com/ephf/quark-threads" target="_blank">ephf/threads</a>.
+                    </p>
+                </div>
             </div>
             <div class="code">
                 <script>

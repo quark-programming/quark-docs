@@ -85,5 +85,7 @@ a {
     color: transparent;
     background-clip: text;
 
-    border-bottom: 1px solid #f1c309;
+    &:is(a) {
+        border-bottom: 1px solid #f1c309;
+    }
 }
