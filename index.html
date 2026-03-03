@@ -10,8 +10,13 @@
 
     <script src="js/loader.js"></script>
     <script src="js/markdown.js"></script>
+    <script src="js/e.js"></script>
 
     <style>
+        main p, main a {
+            color: black;
+        }
+
         @media (max-aspect-ratio: 1) {
             nav {
                 justify-content: center !important;
@@ -83,41 +88,148 @@
 
                 <div style="display: grid; place-items: center; gap: 1em;">
                     <a href="docs.html" style="font-size: 1.5em; padding: 1em 2em; background: var(--purple); 
-                            text-decoration: none; letter-spacing: 0.1em;">
+                            text-decoration: none; letter-spacing: 0.1em; border-bottom: none;">
                         <b>QUICK START</b>
                     </a>
                     <a href="https://github.com/quark-programming/quark/releases/tag/0.4.1" target="_blank">
                         Version 0.4.1
+                    </a>
+                    <a href="https://github.com/quark-programming/quark/releases/tag/0.5.5pre" target="_blank" class="experimental">
+                        Experimental Pre-release 0.5.5
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <main style="padding: 5em;">
-        <h1 style="color: black;">Quark Projects</h1>
-        <hr style="margin-top: .5em; margin-bottom: 2em;" />
+    <main style="display: flex; flex-direction: column; gap: 5em; padding: 5em; width: 100%; box-sizing: border-box;">
+        <style>
+            main > div {
+                display: flex;
+                gap: 5em;
+                width: 100%;
 
-        <div style="display: flex; flex-direction: column; gap: 2em;">
-            <script>
-                load_self("markdown/projects.json", text => Promise.all(JSON.parse(text).map(async project => {
-                    return `<div style="padding: 1em; border: 1px solid var(--background); border-radius: 4px;">
-                        <a href="project.html#${project.github}" style="display: flex; text-decoration: none;">
-                            <h3 style="color: black;">${project.name}</h3>
-                            <p style="margin-left: auto; color: black; font-size: .5em;">click to see README</p>
-                        </a>
-                        <a style="color: blue; font-size: .7em;"
-                                href="https://github.com/${project.github}" target="_blank">
-                            ${project.github}
-                        </a>
-                        <a href="project.html#${project.github}"
-                                style="font-size: .4em; padding-top: 2em; display: block; text-decoration: none;">${
-                            markdown(await fetch(`markdown/snippets/${project.snippet}.md`).then(res => res.text()))
-                        }</a>
-                        <p style="font-size: .5em; color: black; margin-top: .2em;">code snippet</p>
-                    </div>`;
-                })))
-            </script>
+                > .code {
+                    flex: 1;
+                    display: grid;
+                    place-items: center;
+
+                    > pre {
+                        width: 100%;
+                        box-shadow: 0 0 20px #0005;
+                    }
+                }
+
+                > .description {
+                    flex: 1;
+                    font-size: 1.4em;
+                    display: grid;
+                    place-items: center;
+                }
+            }
+        </style>
+
+        <div>
+            <div class="code">
+                <script>
+                    document.currentScript.replaceWith(e`<pre><code>${markdown_language("quark", `
+struct Wrapper<T> {
+    T value;
+
+    Wrapper<T> new(T value) {
+        return Wrapper { value };
+    }
+
+    T get() {
+        return value;
+    }
+}
+
+Wrapper<i32> wrapper = Wrapper::new(42);
+                        `.trim())}</code></pre>`);
+                </script>
+            </div>
+            <div class="description">
+                <p>
+                    C-like syntax with powerful features like methods and compile-time generics.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <div class="description">
+                <p>
+                    A growing standard library with utilities for common programming tasks, like collections and
+                    standard output.
+                </p>
+            </div>
+            <div class="code">
+                <script>
+                    document.currentScript.replaceWith(e`<pre><code>${markdown_language("quark", `
+Vec<i32> vec = Vec::from([1, 2, 3]);
+vec.push(4);
+
+for(int i = 0; i < vec.len(); i++) {
+    print_i32(vec[i]);
+}
+
+// 0.5pre
+vec.free();
+                    `.trim())}</code></pre>`);
+                </script>
+            </div>
+        </div>
+
+        <div>
+            <div class="code">
+                <script>
+                    document.currentScript.replaceWith(e`<pre><code>${markdown_language("bash", `
+QUARK_ROOT ?= /path/to/quark
+# 0.5pre
+QUARK_LIB ?= /path/to/quark/lib
+
+build:
+\tqc main.qk -o main.c -l $(QUARK_ROOT)
+\t# -l $(QUARK_LIB) 0.5pre
+\t$(CC) main.c -o my_program
+                        `.trim())}</code></pre>`);
+                </script>
+            </div>
+            <div class="description">
+                <p>
+                    Compile to C and add the <code>$QUARK_ROOT</code> library path to command to use the
+                    standard library.
+                </p>
+            </div>
+        </div>
+
+        <div>
+            <div class="description">
+                <p>
+                    Create and run threads with shared state using the external threads library
+                    <a href="https://github.com/ephf/quark-threads" target="_blank">ephf/threads</a>.
+                </p>
+            </div>
+            <div class="code">
+                <script>
+                    document.currentScript.replaceWith(e`<pre><code>${markdown_language("quark", `
+import thread::{ Thread, Mutex };
+
+Mutex<i32> counter = Mutex::new(0);
+
+Thread thread = Thread::new(i32 (Mutex<i32>* counter) {
+    i32* count = counter->lock();
+    *counter++;
+    counter->unlock();
+
+    return *counter;
+}, &counter);
+
+print_i32(thread.wait());
+counter->free();
+                    `.trim())}</code></pre>`);
+                </script>
+            </div>
         </div>
     </main>
 </body>
