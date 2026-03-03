@@ -50,7 +50,8 @@
     </style>
 </head>
 <body>
-    <nav style="position: fixed; height: 5em; width: 100%; display: flex; justify-content: end; background: var(--background);">
+    <nav style="position: fixed; height: 5em; width: 100%; display: flex; justify-content: end;
+            background: var(--background); z-index: 1;">
         <div style="display: flex; align-items: center; gap: 1em; padding-right: 3em;">
             <a href="https://github.com/quark-programming/quark" target="_blank">GitHub</a>
             <a href="docs.html">Docs</a>
@@ -127,6 +128,22 @@
                     place-items: center;
                 }
             }
+
+            @media (max-width: 920px) {
+                main > div:nth-child(odd) {
+                    flex-direction: column;
+                }
+
+                main > div:nth-child(even) {
+                    flex-direction: column-reverse;
+                }
+            }
+
+            @media (max-width: 630px) {
+                code {
+                    font-size: 1.5vw;
+                }
+            }
         </style>
 
         <div>
@@ -197,8 +214,7 @@ build:
             </div>
             <div class="description">
                 <p>
-                    Compile to C and add the <code>$QUARK_ROOT</code> library path to command to use the
-                    standard library.
+                    Simple command-line interface for compiling your entire project into a single C file.
                 </p>
             </div>
         </div>
