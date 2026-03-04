@@ -11,7 +11,7 @@ window.markdown_language = (lang, text) =>
           () => `<span style='color: #727169'>${a[5]}</span>`,
         ][a.findIndex((x) => x)]()),
     quark: () => text.replaceAll(
-      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n|\n(?=\n))|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
+      /\b(const|extern)\b|(#\w+|\b(?:void|auto|int|typeof|sizeof|import|return|struct|if|while|for|type|trait)\b)|(\w+(?:(?=\()|(?=<.+?>\()))|\b([A-Z_]{2,})\b|\b([uif]\d{1,2}|[iu]size|[iu]?char|[A-Z]\w*|\w+?_t|bool|str)\b|(\d+)|(".+?")|(\w+)|(\\\n|\n(?=\n))|(\/\/.+?\n|\/\*[\s\S]+?\*\/)|(\S)/g,
       (_, ...a) => [
         () => `<i style="color: #957FB8">${a[0]}</i>`,
         () => `<span style="color: #957FB8">${a[1]}</span>`,
@@ -33,10 +33,10 @@ window.markdown_language = (lang, text) =>
 window.markdown = (text) =>
   `<span>${text
     .replaceAll(
-      /(#+) (.+?)\n|\[(.+?\]\(.+?)\)|```(\w*\n[\s\S]+?)```|`(.+?)`|\*\*(.+?)\*\*|> (.+?)\n/g,
+      /(#+) (.+?)\n|\[(.+?\]\(.+?)\)|```(\w*\n[\s\S]+?)```|`(.+?)`|\*\*(.+?)\*\*|> (.+?)\n|\{\!\s*((?:\{[\s\S]+?\}|[\s\S])+?)\s*\}/g,
       (_, ...a) =>
         [
-          () => `<h${a[0].length} color="white">${a[1]}</h${a[0].length}>\n`,
+          () => `<h${a[0].length} color="white">${markdown(a[1])}</h${a[0].length}>\n`,
           null,
           () =>
             `<a href="${a[2]?.split("](")[1]}" ${
@@ -49,7 +49,8 @@ window.markdown = (text) =>
             )}</code></pre>`,
           () => `<code>${a[4]}</code>`,
           () => `<b>${a[5]}</b>`,
-          () => `<i style="color: rgb(103, 103, 115); background: rgb(34, 34, 42); display: block; padding: .5em; border-radius: 4px; margin-left: .5em;">${a[6]}</i>\n`,
+          () => `<span style="color: rgb(103, 103, 115); background: rgb(34, 34, 42); display: block; padding: .5em; padding-left: 1em; border-left: 1px solid rgb(103, 103, 115);">${markdown(a[6])}</span>\n`,
+          () => `<div style="border-left: 1px solid #f1c309; padding-left: 0.5em; display: flex; flex-direction: column; gap: 0.5em;"><span class="experimental" style="display: block; font-size: 0.7em; width: fit-content;">experimental</span>${markdown(a[7])}</div>`,
         ][a.findIndex((x) => x)]()
     )
     .replaceAll(/\n\r?\n/g, "</span><span>")}</span>`;

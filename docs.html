@@ -47,7 +47,7 @@
                 const nav_clicks = {};
                 let last_inset = 0;
 
-                load_self("markdown/docs/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value], i) => {
+                load_self("markdown/docs/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value, cls], i) => {
                     if(typeof value === "number") {
                         return `<h${value} style="margin-${value - 2 ? "top" : "bottom"}: .25em;">
                             ${label}
@@ -63,7 +63,7 @@
                         document.querySelector("main > div").scrollTo(0, 0);
                     }
                     if (location.hash.slice(1) === value || i === 1) nav_clicks[value]();
-                    return `<a style="text-decoration: none" href="javascript:" onclick="location.hash = '#${value}'">${label}</a>`;
+                    return `<a class="${cls ?? ""} nav" href="javascript:" onclick="location.hash = '#${value}'">${label}</a>`;
                 })));
 
                 window.onhashchange = () => nav_clicks[location.hash.slice(1)]?.();

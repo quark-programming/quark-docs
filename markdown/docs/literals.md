@@ -38,6 +38,18 @@ char* buffer = /* ... */;
 fread(buffer, sizeof(char), /* buffer size */, file_stdin);
 ```
 
+{!
+You can also create blocks of C code inserted directly into your program using the `extern` block syntax.
+
+```quark
+extern {
+    // The following in C code
+    pthread_t thread; 
+    pthread_create(&thread, NULL, &start_routine, NULL);
+};
+```
+}
+
 <footer>
 [Prev: Type Modifiers](#type-modifiers)
 [Next: Variables](#variables)

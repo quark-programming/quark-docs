@@ -21,7 +21,7 @@ Quark comes with some primitive types out of the box which have their C equivale
         <tr><td>`i64`</td><td>`int64_t`</td></tr>
         <tr><td>`f32`</td><td>`float`</td></tr>
         <tr><td>`f64`</td><td>`double`</td></tr>
-        <tr><td>`isize`</td><td>`ssize_t`</td></tr>
+        <tr><td>`isize`</td><td>`ssize_t` or `ptrdiff_t`</td></tr>
         <tr><td>`usize`</td><td>`size_t`</td></tr>
     </table>
     <table style="flex: 1;">

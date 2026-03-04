@@ -46,7 +46,7 @@ nav a {
     width: fit-content;
     border-bottom: 1px solid transparent;
 
-    &:hover {
+    &:hover:not(.experimental) {
         color: #aaa;
         border-bottom: 1px solid;
     }
@@ -84,8 +84,10 @@ a {
     background: linear-gradient(to right, #f1c309, #ffeca0, #f1c309);
     color: transparent;
     background-clip: text;
+}
 
-    &:is(a) {
-        border-bottom: 1px solid #f1c309;
-    }
+a.experimental:not(.nav),
+a:not(.nav) .experimental,
+a.experimental.nav:hover {
+    border-bottom: 1px solid #f1c309;
 }

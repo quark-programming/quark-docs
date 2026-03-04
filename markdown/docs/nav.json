@@ -10,6 +10,7 @@
     ["> Compound Types", "compound-types"],
     ["> Structures", "structures"],
     ["> Generics", "generics"],
+    ["> Traits", "traits", "experimental"],
     ["> Type Modifiers", "type-modifiers"],
 
     ["Values", 3],
@@ -24,5 +25,6 @@
     ["> External C Functions", "external-c-functions"],
 
     ["Misc", 3],
-    ["Multiple Files", "multiple-files"]
+    ["Multiple Files", "multiple-files"],
+    ["Generics Compilation", "generics-compilation"]
 ]

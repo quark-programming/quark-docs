@@ -29,7 +29,7 @@
     <nav style="height: 5em; position: fixed; top: 0; display: flex; align-items: center; box-sizing: border-box;
             padding: 0 1em; width: 100%; background: linear-gradient(to bottom, var(--background) 30%, transparent),
                 linear-gradient(#0004, #0004);">
-        <a href="index.html" style="display: grid; place-items: center;">
+        <a href="index.html" style="display: grid; place-items: center; border-bottom: none;">
             <img src="assets/title.png" style="height: 4em;"/>
         </a>
 
@@ -47,9 +47,9 @@
                 const nav_clicks = {};
                 let last_inset = 0;
 
-                load_self("markdown/lib/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value], i) => {
+                load_self("markdown/lib/nav.json", text => Promise.all(JSON.parse(text).map(async ([label, value, cls = ""], i) => {
                     if(typeof value === "number") {
-                        return `<h${value} style="margin-${value - 2 ? "top" : "bottom"}: .25em;">
+                        return `<h${value} class="${cls}" style="margin-${value - 2 ? "top" : "bottom"}: .25em;">
                             ${label}
                         </h${value}>`;
                     }
@@ -63,7 +63,7 @@
                         document.querySelector("main > div").scrollTo(0, 0);
                     }
                     if (location.hash.slice(1) === value || i === 1) nav_clicks[value]();
-                    return `<a style="text-decoration: none" href="javascript:" onclick="location.hash = '#${value}'">${label}</a>`;
+                    return `<a class="${cls} nav" style="text-decoration: none" href="javascript:" onclick="location.hash = '#${value}'">${label}</a>`;
                 })));
 
                 window.onhashchange = () => nav_clicks[location.hash.slice(1)]?.();

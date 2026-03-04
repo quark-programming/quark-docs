@@ -31,6 +31,14 @@ export QUARK_ROOT="/absolute/path/to/JDK/quark"
 export PATH="$PATH:$QUARK_ROOT"
 ```
 
+{!
+For experimental versions, use `$QUARK_LIB` to reference the standard library.
+
+```bash
+export QUARK_LIB="$QUARK_ROOT/lib"
+```
+}
+
 After closing and restarting your terminal you should be able to run `qc` to get the current version,
 
 ```bash
@@ -40,8 +48,14 @@ qc -v
 Just remember to include `$QUARK_ROOT` as an import directory whenever compiling,
 
 ```bash
-qc [...] -l $QUARK_ROOT
+qc ... -l $QUARK_ROOT
 ```
+
+{!
+```bash
+qc ... -l $QUARK_LIB
+```
+}
 
 ## Building Locally
 
@@ -50,8 +64,8 @@ You can download the latest source code using the [latest release](https://githu
 After downloading the source code, navigate to its folder and build the compiler using `make`. You can either build the compiler with the default `qc` executable name, or specify one yourself:
 
 ```bash
-make # or
-make OUT=name
+make build # or
+make build OUT=name
 ```
 
 You can then use the executable with the relative `./qc`:
